@@ -2,7 +2,7 @@ name: Deploy to AWS S3
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   Deploy:
@@ -15,10 +15,10 @@ jobs:
       - name: NodeJs Setup
         uses: actions/setup-node@v1
         with:
-          node-version: ${{secrets.node_version}}
+          node-version: ${{ secrets.node_version }}
 
       - name: Dependency Installation
-        run: npm Install
+        run: npm install
 
       - name: App Build
         run: npm run build
@@ -26,8 +26,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
-          aws-secret_access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-2
       
       - name: Deploy to AWS S3
